@@ -48,7 +48,7 @@ public class LoginServlet extends HttpServlet {
                 if (user.getRole().equals("ADMIN")) {
                     response.sendRedirect("dashboard.jsp");
                 } else if (user.getRole().equals("STAFF")) {
-                    response.sendRedirect("staff.jsp");
+                    response.sendRedirect("dashboard.jsp");
                 } else {
                     response.sendRedirect("student.jsp");
                 }

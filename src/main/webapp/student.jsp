@@ -127,16 +127,10 @@
         }
     %>
 
-    <div class="navbar">
-        <strong>Smart Campus Service Management</strong>
-        <div>
-            <span>Welcome, <%= user.getName() %></span>
-            <a href="submit.jsp">+ New Request</a>
-            <a href="<%= request.getContextPath() %>/logout">Logout</a>
-        </div>
-    </div>
+<%@ include file="sidebar.jsp" %>
 
-    <div class="container">
+<div id="mainContent" class="main-content">
+<div class="container">
 
         
         
@@ -160,21 +154,41 @@
         });
 
         const buildings = [
-            { number: "1-6",   name: "Main Complex (Office Block, Library, ICT, Admin, University Hall, Auditorium)", lat: -25.435532280745516, lng: 30.982779599534847 },
-            { number: "7",     name: "Multi-Purpose Teaching Block",                                                   lat: -25.434677114155356, lng: 30.980467490837732 },
-            { number: "8-9",   name: "Hospitality & Tourism / Wellness and Conference Centre",                         lat: -25.43618649645753,  lng: 30.98565369329116  },
-            { number: "9",     name: "Wellness and Conference Centre",                                                 lat: -25.43653331820842,  lng: 30.98436996862353  },
-            { number: "10-11", name: "Archive Building / Multi Purpose Admin Block",                                   lat: -25.434704014857637, lng: 30.980458980015175 },
-            { number: "ICT",   name: "ICT Labs",                                                                       lat: -25.435540885879355, lng: 30.982364260219363 },
-            { number: "35",    name: "Health and Wellness, Clinic and Gym",                                            lat: -25.434720685392175, lng: 30.980524557013158 },
-            { number: "13",    name: "Library",                                                                        lat: -25.436887814759263, lng: 30.982360664069525 },
-            { number: "4",     name: "Administration Block",                                                           lat: -25.43598782542453,  lng: 30.983152957083913 },
-            { number: "26-34", name: "Student Residences & Dining Hall",                                               lat: -25.435849322678017, lng: 30.98024685718296  },
-            { number: "15-22", name: "Lecture Venues & Laboratories Complex",                                          lat: -25.435372687526936, lng: 30.978063183464645 },
-            { number: "36-38", name: "Sports & Recreation (Multi Purpose Hall, Squash Court, Gym)",                    lat: -25.434677114155356, lng: 30.980467490837732 },
-            { number: "34",    name: "Dining Hall",                                                                    lat: -25.43591865723786,  lng: 30.98242926343278  },
-        ];
-
+            { number: "2",   name: "Library and Lecture Venue",                                                        lat: -25.435532280745516,   lng: 30.982779599534847 },
+            { number: "7",     name: "Multi-Purpose Teaching Block",                                                   lat: -25.43630878961925,    lng: 30.984693754809882 },
+            { number: "8",     name: "Hospitality & Tourism / Wellness and Conference Centre",                         lat: -25.43618649645753,    lng: 30.98565369329116  },
+            { number: "9",     name: "Wellness and Conference Centre",                                                 lat: -25.436646594335883,   lng: 30.98587120370147  },
+            { number: "10",    name: "Archive Building ",                                                              lat: -25.43465934547468,    lng: 30.980315329428805 },
+            { number: "3",     name: "ICT Labs",                                                                       lat: -25.435540885879355,   lng: 30.982364260219363 },
+            { number: "35",    name: "Health and Wellness, Clinic and Gym",                                            lat: -25.434720685392175,   lng: 30.980524557013158 },
+            { number: "13",    name: "Library",                                                                        lat: -25.436887814759263,   lng: 30.982360664069525 },
+            { number: "4",     name: "Administration Block",                                                           lat: -25.43598782542453,    lng: 30.983152957083913 },
+            { number: "26-33", name: "Student Residences ",                                                            lat: -25.435759111049038,   lng: 30.98052422380456  },
+            { number: "37-38", name: "Sports & Recreation (Multi Purpose Hall, Squash Court, Gym)",                    lat: -25.43438181819322,    lng: 30.98002398806447 },
+            { number: "34",    name: "Dining Hall",                                                                    lat: -25.43591865723786,    lng: 30.98242926343278  },
+            {number:"39",      name:"multipurpose hall",                                                               lat: -25.43475444278633,    lng: 30.979911456058264},
+            {number:"12",      name: "Multi Purpose Admin Block West",                                                 lat: -25.437089549754564,   lng: 30.983996302415584},
+            {number: "11",     name: "Multi Purpose Admin Block East",                                                 lat: -25.436930967826424,   lng: 30.98467344771805},
+            {number:"5",       name:"University Hall and Dining Hall",                                                 lat: -25.435975738020815,   lng: 30.982487693334292},
+            {number:"1",       name:"Office Block",                                                                    lat: -25.435415298095204,   lng: 30.982862345621317},
+            {number:"6",       name:"Auditorium",                                                                      lat: -25.436258746221597,   lng: 30.983046668951292},
+            {number: "7",      name: "Multi-Purpose Teaching Block",                                                   lat: -25.436353890842685,   lng: 30.98358620662674 },
+            {number:"21",      name:"Undergraduate Science Laboratories and Teaching Venues",                          lat:-25.434767495942307,    lng:30.977512151268456 },
+            {number:"15",      name:"Library, IT Platform and Auditorium",                                             lat:-25.43583314467284,     lng:30.978209155882436},
+            {number:"16",      name:"Student Centre",                                                                  lat:-25.43562967852342 ,    lng:30.9783057154036},
+            {number:"17",      name:"Physics Laboratory",                                                              lat: -25.435309945308617,   lng:30.97842373259612},
+            {number:"18",      name:"Engineering Laboratory",                                                          lat: -25.434980522320984 ,  lng:30.978289622150076},
+            {number:"19",      name:"Chemistry Laboratory",                                                            lat: -25.43509678936065 ,   lng:30.97798385033308},
+            {number:"20",      name:"Lecture Venue and Offices",                                                       lat:-25.435460123136405 ,   lng:30.97753860365219},
+            {number:"22",      name:"Offices and Research Laboratories",                                               lat:-25.43529541196051 ,    lng:30.97708262813562},
+            {number:"23",      name:"Irrigation Laboratory",                                                           lat:-25.439690437034844 ,   lng:30.980620832565837},
+            {number:"24",      name:"Offices",                                                                         lat:-25.44025281635609 ,    lng:30.98217257384538},
+            {number:"25",      name:"Operational Support and Facilities Management",                                   lat:-25.440662681556677 ,   lng:30.9819769373726},
+            /*{number:"", name:"", lat: , lng:},*/
+            
+        ]; 
+         
+ 
         buildings.forEach(b => {
             const marker = new google.maps.Marker({
                 position: { lat: b.lat, lng: b.lng },
@@ -329,6 +343,6 @@
         });
     }
 </script>        
-        
+    </div>    
 </body>
 </html>

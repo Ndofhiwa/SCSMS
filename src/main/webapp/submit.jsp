@@ -62,13 +62,14 @@
         User navUser = (User) session.getAttribute("user");
         String dashboardPage = (navUser != null && navUser.getRole().equals("ADMIN")) ? "dashboard.jsp" : "student.jsp";
     %>
-    <div style="background-color:#007bff; color:white; padding:16px 24px; display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
-        <strong>Smart Campus Service Management</strong>
-        <div>
-            <a href="<%= dashboardPage %>" style="color:white; text-decoration:none; background-color:#0056b3; padding:8px 16px; border-radius:4px; margin-left:8px;">Dashboard</a>
-            <a href="logout" style="color:white; text-decoration:none; background-color:#0056b3; padding:8px 16px; border-radius:4px; margin-left:8px;">Logout</a>
-        </div>
-    </div>
+    
+    <%@ include file="sidebar.jsp" %>
+    
+    <div id="mainContent" class="main-content">
+    <div class="container">
+        
+        
+
             
           <div class="page-content">  
     <div class="form-box">
@@ -102,5 +103,6 @@
         <div class="back"><a href="dashboard.jsp">← Back to Dashboard</a></div>
     </div>
     </div>
+   </div>
 </body>
 </html>

@@ -174,15 +174,10 @@
         }
     %>
 
-    <div class="navbar">
-        <strong>Smart Campus — Admin Dashboard</strong>
-        <div>
-            <span>Welcome, <%= user.getName() %></span>
-            <a href="<%= request.getContextPath() %>/logout">Logout</a>
-        </div>
-    </div>
+<%@ include file="sidebar.jsp" %>
 
-    <div class="container">
+<div id="mainContent" class="main-content">
+<div class="container">
 
         <!-- SUMMARY CARDS -->
         <div class="cards">
@@ -273,5 +268,6 @@
             btn.classList.remove('active');
         });
     </script>
+    </div>
 </body>
 </html>
