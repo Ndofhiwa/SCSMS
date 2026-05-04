@@ -1,0 +1,16 @@
+com\mycompany\scsms\model\ServiceRequest.class
+com\mycompany\scsms\model\Announcement.class
+com\mycompany\scsms\servlet\UpdateStatusServlet.class
+com\mycompany\scsms\util\EmailService.class
+com\mycompany\scsms\util\EmailService$1.class
+com\mycompany\scsms\servlet\LoginServlet.class
+com\mycompany\scsms\servlet\LogoutServlet.class
+com\mycompany\scsms\servlet\RegisterServlet.class
+com\mycompany\scsms\resources\JakartaEE10Resource.class
+com\mycompany\scsms\servlet\RequestServlet.class
+com\mycompany\scsms\util\EmailService$2.class
+com\mycompany\scsms\JakartaRestConfiguration.class
+com\mycompany\scsms\servlet\AnnouncementServlet.class
+com\mycompany\scsms\model\User.class
+com\mycompany\scsms\servlet\AssignServlet.class
+com\mycompany\scsms\db\DBConnection.class

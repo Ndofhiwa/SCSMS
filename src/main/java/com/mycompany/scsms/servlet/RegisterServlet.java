@@ -21,19 +21,25 @@ public class RegisterServlet extends HttpServlet {
         String name = request.getParameter("name");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+        String role = request.getParameter("role");
+        String department = request.getParameter("department");
+
+        if (role == null || (!role.equals("STUDENT") && !role.equals("STAFF"))) {
+            role = "STUDENT";
+        }
+        if (!role.equals("STAFF")) {
+            department = null;
+        }
 
         try {
             Connection conn = DBConnection.getConnection();
-            String role = request.getParameter("role");
-                if (role == null || (!role.equals("STUDENT") && !role.equals("STAFF"))) {
-                    role = "STUDENT";
-                }
-                String sql = "INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)";
+            String sql = "INSERT INTO users (name, email, password, role, department) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, name);
             stmt.setString(2, email);
             stmt.setString(3, password);
             stmt.setString(4, role);
+            stmt.setString(5, department);
             stmt.executeUpdate();
 
             response.sendRedirect("login.jsp");

@@ -65,15 +65,40 @@
 
             <button type="submit">Register</button>
             
+            
+            
             <label>Register As</label>
-            <select name="role">
+            <select name="role" id="roleSelect" onchange="toggleDepartment()">
                 <option value="STUDENT">Student</option>
                 <option value="STAFF">Staff</option>
             </select>
+
+            <div id="departmentDiv" style="display:none;">
+                <label>Department</label>
+                <select name="department">
+                    <option value="">-- Select Department --</option>
+                    <option value="Maintenance">Maintenance</option>
+                    <option value="IT Support">IT Support</option>
+                    <option value="Classroom Equipment">Classroom Equipment</option>
+                    <option value="General Inquiry">General Inquiry</option>
+                </select>
+            </div>
+            
+            
         </form>
         <div class="login-link">
             Already have an account? <a href="login.jsp">Login here</a>
         </div>
     </div>
+        
+<script>
+    function toggleDepartment() {
+        const role = document.getElementById('roleSelect').value;
+        const dept = document.getElementById('departmentDiv');
+        dept.style.display = role === 'STAFF' ? 'block' : 'none';
+    }
+</script>
+
+
 </body>
 </html>

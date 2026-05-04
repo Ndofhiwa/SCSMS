@@ -56,9 +56,13 @@ if (rs.next()) {
 }
 
 if (user.getRole().equals("STAFF")) {
+    
+if (user.getRole().equals("STAFF")) {
     response.sendRedirect("staff.jsp");
 } else {
     response.sendRedirect("dashboard.jsp");
+}
+
 }
         } catch (SQLException e) {
             throw new ServletException("Database error", e);

@@ -39,7 +39,8 @@ public class LoginServlet extends HttpServlet {
                     rs.getString("name"),
                     rs.getString("email"),
                     rs.getString("password"),
-                    rs.getString("role")
+                    rs.getString("role"),
+                    rs.getString("department")
                 );
 
                 HttpSession session = request.getSession();
