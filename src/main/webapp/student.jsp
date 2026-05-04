@@ -1,3 +1,4 @@
+<%@ page import="com.mycompany.scsms.model.Announcement" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.mycompany.scsms.model.User" %>
 <%@ page import="com.mycompany.scsms.model.ServiceRequest" %>
@@ -119,7 +120,8 @@
                     rs.getString("description"),
                     rs.getString("priority"),
                     rs.getString("status"),
-                    rs.getString("created_at")
+                    rs.getString("created_at"),
+                    rs.getInt("assigned_to")
                 ));
             }
         } catch (Exception e) {
@@ -326,6 +328,44 @@
         </div>
 
     </div>
+        
+    <!-- ANNOUNCEMENTS -->
+<div class="section">
+    <h2>📢 Campus Announcements</h2>
+    <%
+        List<com.mycompany.scsms.model.Announcement> announcements = new ArrayList<>();
+        try {
+            Connection connAnn = DBConnection.getConnection();
+            ResultSet rsAnn = connAnn.prepareStatement(
+                "SELECT * FROM announcements ORDER BY created_at DESC"
+            ).executeQuery();
+            while (rsAnn.next()) {
+                announcements.add(new com.mycompany.scsms.model.Announcement(
+                    rsAnn.getInt("id"),
+                    rsAnn.getString("title"),
+                    rsAnn.getString("message"),
+                    rsAnn.getInt("created_by"),
+                    rsAnn.getString("created_at")
+                ));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    %>
+    <% if (announcements.isEmpty()) { %>
+        <div class="empty">No announcements at this time.</div>
+    <% } else { %>
+        <% for (com.mycompany.scsms.model.Announcement ann : announcements) { %>
+        <div style="border-left:4px solid #007bff; border-radius:6px; padding:16px; margin-bottom:12px; background-color:#f0f7ff;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                <strong style="color:#007bff; font-size:16px;"><%= ann.getTitle() %></strong>
+                <small style="color:#999;"><%= ann.getCreatedAt() %></small>
+            </div>
+            <p style="color:#333; font-size:14px;"><%= ann.getMessage() %></p>
+        </div>
+        <% } %>
+    <% } %>
+</div>
         
         
 <script>

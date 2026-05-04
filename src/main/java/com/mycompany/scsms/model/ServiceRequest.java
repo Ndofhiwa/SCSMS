@@ -10,11 +10,13 @@ public class ServiceRequest {
     private String priority;
     private String status;
     private String createdAt;
+    private int assignedTo;
     
     public ServiceRequest() {}
     
     public ServiceRequest(int id, int userId, String location, String category,
-                          String description, String priority, String status, String createdAt) {
+                          String description, String priority, String status, 
+                          String createdAt, int assignedTo) {
         this.id = id;
         this.userId = userId;
         this.location = location;
@@ -23,8 +25,8 @@ public class ServiceRequest {
         this.priority = priority;
         this.status = status;
         this.createdAt = createdAt;
+        this.assignedTo = assignedTo;
     }
-
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 
@@ -48,4 +50,7 @@ public class ServiceRequest {
 
     public String getCreatedAt() { return createdAt; }
     public void setCreatedAt(String createdAt) { this.createdAt = createdAt; }
+    
+    public int getAssignedTo() { return assignedTo; }
+    public void setAssignedTo(int assignedTo) { this.assignedTo = assignedTo; }
 }

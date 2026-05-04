@@ -39,7 +39,8 @@ public class LoginServlet extends HttpServlet {
                     rs.getString("name"),
                     rs.getString("email"),
                     rs.getString("password"),
-                    rs.getString("role")
+                    rs.getString("role"),
+                    rs.getString("department")
                 );
 
                 HttpSession session = request.getSession();
@@ -48,7 +49,7 @@ public class LoginServlet extends HttpServlet {
                 if (user.getRole().equals("ADMIN")) {
                     response.sendRedirect("dashboard.jsp");
                 } else if (user.getRole().equals("STAFF")) {
-                    response.sendRedirect("dashboard.jsp");
+                    response.sendRedirect("staff.jsp");
                 } else {
                     response.sendRedirect("student.jsp");
                 }

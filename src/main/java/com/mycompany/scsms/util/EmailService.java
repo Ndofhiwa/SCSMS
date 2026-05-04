@@ -44,4 +44,41 @@ public class EmailService {
             System.err.println("Failed to send email: " + e.getMessage());
         }
     }
+    
+    public static void sendAssignmentNotification(String toEmail, String staffName, String requestId) {
+    Properties props = new Properties();
+    props.put("mail.smtp.auth", "true");
+    props.put("mail.smtp.host", "smtp.gmail.com");
+    props.put("mail.smtp.port", "465");
+    props.put("mail.smtp.ssl.enable", "true");
+    props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+
+    Session session = Session.getInstance(props, new Authenticator() {
+        @Override
+        protected PasswordAuthentication getPasswordAuthentication() {
+            return new PasswordAuthentication(FROM_EMAIL, FROM_PASSWORD);
+        }
+    });
+
+    try {
+        Message message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(FROM_EMAIL));
+        message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
+        message.setSubject("SCSMS - New Request Assigned to You");
+        message.setText(
+            "Dear " + staffName + ",\n\n" +
+            "A service request (ID: " + requestId + ") has been assigned to you.\n\n" +
+            "Please log in to the Smart Campus Service Management System to view and handle it.\n\n" +
+            "Regards,\n" +
+            "SCSMS Team"
+        );
+
+        Transport.send(message);
+        System.out.println("Assignment email sent to " + toEmail);
+
+    } catch (MessagingException e) {
+        System.err.println("Failed to send assignment email: " + e.getMessage());
+    }
 }
+}
+

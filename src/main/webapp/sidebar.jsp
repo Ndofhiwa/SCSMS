@@ -121,8 +121,12 @@
 
 
     <nav class="sidebar-nav">
-        <% if (currentRole.equals("ADMIN") || currentRole.equals("STAFF")) { %>
-            <a href="dashboard.jsp" class="nav-item">
+                <% if (currentRole.equals("ADMIN") || currentRole.equals("STAFF")) { %>
+                    <% if (currentRole.equals("STAFF")) { %>
+                    <a href="staff.jsp" class="nav-item">
+                    <% } else { %>
+                    <a href="dashboard.jsp" class="nav-item">
+                    <% } %>
                 <span class="nav-icon"><i class="fas fa-tachometer-alt"></i></span>
                 <span class="nav-label">Dashboard</span>
             </a>
